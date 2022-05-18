@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&family=Whisper&display=swap');
+
+
+h1{
+  display: block;
+  color: white;
+  font-size: 50px;
+  font-family:'Lucida Sans', 'Whisper', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+  
+}
+
+body{
+    font-family: 'Raleway';
+    background-image: url("../images/weather.jpg");
+    background-size:     cover;                      /* <------ */
+      background-repeat:   no-repeat;
+      background-position: center center
+}
+
+body h1{
+    font-family: 'Whisper', cursive;
+    color: rgb(159, 226, 243);
+    font-size: 100px;
+    font-weight: 100;
+    text-align: center;
+  }
+
+h2{
+    border: aqua;
+    border-radius: 50px;
+    margin-left: 550px;
+    margin-right: 550px;
+    padding: 15px 20px;
+    color: white;
+    background-color: rgb(147, 216, 236);
+    box-shadow: 2px 5px 5px rgba(227, 232, 229, 0.945);
+}
+
+a{
+    text-decoration: none;
+}

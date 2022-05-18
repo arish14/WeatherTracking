@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300;400&family=Whisper&display=swap');
+
+#src{
+    background-color: rgb(255, 250, 246);
+    color: rgb(35, 2, 2);
+    width: 500px;
+    height: 25px;
+    align-items: center;
+    margin: 10px;
+    padding: 10px;
+    padding-left: 35px;
+    border-radius: 50px;
+    border: 2px solid black;
+    box-shadow: 2px 5px 5px rgba(71, 64, 64, 0.101);
+}
+
+body{
+    background-image: url(../images/weather.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+::placeholder {
+    color: rgb(72, 32, 32);
+}
+
+button {
+    border: none;
+    border-radius: 50px;
+    margin-left: 20px;
+    padding: 15px 20px;
+    color: rgb(83, 94, 97);
+    background-color: rgb(147, 216, 236);
+    box-shadow: 2px 5px 5px rgba(14, 12, 12, 0.118);
+}
+
+img{
+    outline: none;
+    border: none;
+    object-fit: contain;
+    width: 100%;
+}
+
+form{
+    padding-left: 35%;
+    padding-top: 20%;
+}
+
+h1 {
+    border-radius: 20px;
+    font-family: 'Whisper', cursive;
+    color: rgb(83, 25, 48);
+    font-size: 50px;
+    margin: 5px;
+    margin-left: 200px;
+    margin-right: 200px;
+    padding: 10px;
+    background-color: rgba(251, 203, 203, 0.55);
+    font-weight: 100;
+    text-align: center;
+}
