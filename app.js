@@ -5,10 +5,49 @@ const msg = document.querySelector(".top-banner .msg");
 const list = document.querySelector(".ajax-section .cities");
 const apiKey = "84dbd77eb59fa78b2b97dcd365f13696";
 
+document.addEventListener("DOMContentLoaded", function(){
+    if (localStorage.getItem('favorites') === null) {
+        //if no create one
+        favorites = [];
+    } else {
+        //if yes get them
+        favorites = JSON.parse(localStorage.getItem('favorites'));
+    }
+    if(favorites.length != 0){
+        favorites.forEach(fav => checkWeather(fav));
+    }
+});
+
 form.addEventListener("submit", e => {
     e.preventDefault();
     let inputVal = input.value;
 
+    checkWeather(inputVal);
+});
+
+function manageFav(id){
+    let city = id;
+    let favorites;
+    //check if we already have favorites
+    if (localStorage.getItem('favorites') === null) {
+        //if no create one
+        favorites = [];
+    } else {
+        //if yes get them
+        favorites = JSON.parse(localStorage.getItem('favorites'));
+    }
+    if(favorites.includes(city)){
+        favorites.splice(favorites.indexOf(city), 1);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    }else{
+        favorites.push(city);
+        localStorage.setItem('favorites', JSON.stringify(favorites));
+    }
+}
+
+
+
+function checkWeather(inputVal){
     //check if there's already a city
     const listItems = list.querySelectorAll(".ajax-section .city");
     const listItemsArray = Array.from(listItems);
@@ -59,11 +98,11 @@ form.addEventListener("submit", e => {
             li.classList.add("city");
             const markup = `
         <h2 class="city-name" data-name="${name},${sys.country}">
-          <span><a href="http://history.openweathermap.org/data/2.5/history/city?q=London,UK&appid=${apiKey}" target="_blank">${name}</a></span>
+          <span><a href="forecast.html?city=${inputVal}&apiKey=${apiKey}" target="_blank">${name}</a></span>
           <sup>${sys.country}</sup>
         </h2>
         <br>
-        <button class = "fav">Add To Favorite?</button>
+        <button class = "fav" id="${inputVal}" onclick="manageFav(this.id)">Add To Favorite?</button>
         <div class="city-temp">${Math.round(main.temp)}<sup>°C</sup></div>
         <figure>
           <img class="city-icon" src="${icon}" alt="${
@@ -82,4 +121,4 @@ form.addEventListener("submit", e => {
     msg.textContent = "";
     form.reset();
     input.focus();
-});
+}

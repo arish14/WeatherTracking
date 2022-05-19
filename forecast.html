@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script
+src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js">
+</script>
+</head>
+<body>
+    <script>
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const city = urlParams.get('city');
+        const apiKey = urlParams.get('apiKey');
+        console.log(city);
+        console.log(apiKey);
+        const url =`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`;
+        date = [];
+        temp = [];
+
+        function timeConverter(UNIX_timestamp){
+            var a = new Date(UNIX_timestamp * 1000);
+            var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+            var year = a.getFullYear();
+            var month = months[a.getMonth()];
+            var date = a.getDate();
+            var time = date + ' ' + month + ' ' + year;
+            return time;
+        }
+
+        fetch(url).then(response => response.json())
+        .then(data => {
+            const { list } = data;
+            console.log(list);
+            for(let x  = 0; x < list.length; x++){
+                //date.push(timeConverter(list[x].dt));
+                date.push(parseInt(list[x].dt));
+                temp.push(parseInt(list[x].main.temp - 273));
+            }
+        });
+    </script>
+
+    <canvas id="myChart" style="width:100%;max-width:1000px"></canvas>
+
+    <script>
+        work = [1,2,3,4,5]
+        new Chart("myChart", {
+            type: "line",
+            data: {
+                labels: date,
+                datasets: [{
+                    backgroundColor: "rgba(0,0,0,1)",
+                    borderColor: "red",
+                    data: temp
+                }
+            ]
+            },
+            options: {
+                legend: {display: false},
+                scales: {
+                xAxes: [{ticks: {min: date[0], max:date[date.length-1]}}],
+                yAxes: [{ticks: {min:0, max:40, stepSize:1}}]
+                }
+            }
+        });
+
+    </script>
+</body>
+</html>

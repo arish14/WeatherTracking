@@ -1,13 +1,21 @@
 <?php
-function open(){
-    $con=mysqli_connect("localhost","root","");
-    if(!$con){
-        echo "Not connected to database";
-    }
-    mysqli_select_db($con,"SL");
-    return $con;
+
+
+function OpenCon(){
+    $dbuser="root";
+    $dbpass="";
+    $dbhost="localhost";
+    $dbname = 'SL';
+
+    // connecting the DB
+    $conn = mysqli_connect($dbhost, $dbuser, $dbpass);
+    mysqli_select_db($conn, $dbname);
+
+    return $conn;
 }
-function close($con){
-    mysqli_close($con);
+
+function CloseCon($conn){
+    mysqli_close($conn);
 }
+
 ?>
